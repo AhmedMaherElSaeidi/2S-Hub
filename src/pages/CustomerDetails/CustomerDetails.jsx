@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Text,
   TextInput,
@@ -11,13 +11,14 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Button from "../../components/Button/Button";
 import Loading from "../../components/Loading/Loading";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+import SuccessMessage from "../../components/Successmessage/Successmessage";
 import {
   loadCustomer,
   saveCustomerPhone,
 } from "./CustomerDetails.service";
 import styles from "./CustomerDetails.style";
 
-export default function CustomerDetails({ route }) {
+export default function CustomerDetails({ route, navigation }) {
   const { customerId } = route.params;
 
   const [customer, setCustomer] = useState(null);
@@ -25,6 +26,12 @@ export default function CustomerDetails({ route }) {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const goBackTimeout = useRef(null);
+
+  useEffect(() => {
+    return () => clearTimeout(goBackTimeout.current);
+  }, []);
 
   useEffect(() => {
     const fetchCustomer = async () => {
@@ -47,9 +54,15 @@ export default function CustomerDetails({ route }) {
     try {
       setSaving(true);
       setError("");
+      setSuccess("");
 
       const updated = await saveCustomerPhone(customerId, phone);
       setCustomer(updated);
+      setSuccess("Phone number updated.");
+
+      goBackTimeout.current = setTimeout(() => {
+        navigation.goBack();
+      }, 800);
     } catch (err) {
       setError(err.message || "Unable to update phone");
     } finally {
@@ -98,12 +111,15 @@ export default function CustomerDetails({ route }) {
           />
 
           <ErrorMessage message={error} />
+          <SuccessMessage message={success} />
 
-          <Button
-            title={saving ? "Saving..." : "Save Phone"}
-            onPress={handleSave}
-            disabled={saving}
-          />
+          <View style={styles.saveButton}>
+            <Button
+              title={saving ? "Saving..." : "Save Phone"}
+              onPress={handleSave}
+              disabled={saving}
+            />
+          </View>
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>

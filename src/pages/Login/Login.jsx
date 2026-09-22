@@ -25,9 +25,9 @@ export default function Login({ navigation }) {
       setLoading(true);
       setError("");
 
-      const user = await loginUser(username, password);
+      await loginUser(username, password);
 
-      navigation.replace("Customers", { user });
+      navigation.replace("MainTabs");
     } catch (err) {
       setError(err.message || "Login failed");
     } finally {

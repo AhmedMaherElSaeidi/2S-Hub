@@ -34,4 +34,7 @@ export default StyleSheet.create({
     backgroundColor: "#ffffff",
     fontSize: 16,
   },
+  saveButton: {
+    marginTop: 16,
+  },
 });

@@ -22,12 +22,6 @@ export default StyleSheet.create({
     paddingHorizontal: 14,
     backgroundColor: "#ffffff",
   },
-  salesOrdersLink: {
-    marginTop: 12,
-    fontSize: 14,
-    fontWeight: "600",
-    color: "#111827",
-  },
   list: {
     padding: 16,
     paddingTop: 0,

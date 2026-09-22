@@ -9,7 +9,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import CustomerCard from "../../components/CustomerCard/CustomerCard";
 import Loading from "../../components/Loading/Loading";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
-import { isInternalUser } from "../../controller/auth.controller";
 import { loadCustomers } from "./Customers.service";
 import styles from "./Customers.style";
 
@@ -18,7 +17,6 @@ export default function Customers({ navigation }) {
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const canViewSalesOrders = isInternalUser();
 
   const fetchCustomers = async (value = "") => {
     try {
@@ -58,15 +56,6 @@ export default function Customers({ navigation }) {
           onChangeText={handleSearch}
           placeholder="Search customer..."
         />
-
-        {canViewSalesOrders ? (
-          <Text
-            style={styles.salesOrdersLink}
-            onPress={() => navigation.navigate("SalesOrders")}
-          >
-            View Sales Orders →
-          </Text>
-        ) : null}
 
         <ErrorMessage message={error} />
       </View>
