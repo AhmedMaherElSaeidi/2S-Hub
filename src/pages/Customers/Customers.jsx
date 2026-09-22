@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import {
   FlatList,
   Text,
@@ -6,6 +6,7 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useFocusEffect } from "@react-navigation/native";
 import CustomerCard from "../../components/CustomerCard/CustomerCard";
 import Loading from "../../components/Loading/Loading";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
@@ -32,9 +33,11 @@ export default function Customers({ navigation }) {
     }
   };
 
-  useEffect(() => {
-    fetchCustomers();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      fetchCustomers(search);
+    }, [search])
+  );
 
   const handleSearch = (value) => {
     setSearch(value);
