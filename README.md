@@ -140,13 +140,13 @@ Customer List; internal users additionally get access to Sales Orders.
 
 <table>
   <tr>
-    <td align="center"><img src="assets/readme/login screen.jpg" width="200"/><br/>Login</td>
-    <td align="center"><img src="assets/readme/customers list screen.jpg" width="200"/><br/>Customer List</td>
-    <td align="center"><img src="assets/readme/customer details screen.jpg" width="200"/><br/>Customer Details</td>
+    <td align="center"><img src="./assets/readme/login screen.jpg" width="200"/><br/>Login</td>
+    <td align="center"><img src="./assets/readme/customers list screen.jpg" width="200"/><br/>Customer List</td>
+    <td align="center"><img src="./assets/readme/customer details screen.jpg" width="200"/><br/>Customer Details</td>
   </tr>
   <tr>
-    <td align="center"><img src="assets/readme/orders screen.jpg" width="200"/><br/>Sales Orders</td>
-    <td align="center"><img src="assets/readme/order details screen.jpg" width="200"/><br/>Order Details</td>
-    <td align="center"><img src="assets/readme/profile screen.jpg" width="200"/><br/>Profile</td>
+    <td align="center"><img src="./assets/readme/orders screen.jpg" width="200"/><br/>Sales Orders</td>
+    <td align="center"><img src="./assets/readme/order details screen.jpg" width="200"/><br/>Order Details</td>
+    <td align="center"><img src="./assets/readme/profile screen.jpg" width="200"/><br/>Profile</td>
   </tr>
 </table>
