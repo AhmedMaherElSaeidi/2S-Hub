@@ -1,5 +1,4 @@
 import axios from "axios";
-import { API_URL } from "./constants/constants";
 
 // This file ONLY knows how to talk to the backend over HTTP.
 // It exposes generic REST verbs (get / getById / post / put / delete) —
@@ -8,6 +7,11 @@ import { API_URL } from "./constants/constants";
 // around them. Pages never import this file directly.
 
 let authToken = null;
+const API_URL = process.env.EXPO_PUBLIC_API_URL;
+
+if (!API_URL) {
+  throw new Error("EXPO_PUBLIC_API_URL is not defined. Check your enviroment variables.");
+}
 
 export const setAuthToken = (token) => {
   authToken = token;
@@ -36,14 +40,14 @@ api.interceptors.response.use(
     if (!error.response) {
       return Promise.reject(
         new Error(
-          `Network error: could not reach ${API_URL}. Check that the server is running and that API_URL is correct for how you're running the app (see constants.js).`
-        )
+          `Network error: could not reach ${API_URL}. Check that the server is running and that API_URL is correct for how you're running the app (see constants.js).`,
+        ),
       );
     }
 
     const message = error.response.data?.message || "Something went wrong";
     return Promise.reject(new Error(message));
-  }
+  },
 );
 
 // ---- Generic CRUD ----------------------------------------------------
