@@ -46,7 +46,7 @@ export default function Login({ navigation }) {
           contentContainerStyle={styles.content}
           keyboardShouldPersistTaps="handled"
         >
-          <Image source={require("../../../assets/icon.png")} />
+          <Image source={require("../../../assets/icon.png")} style={styles.logo} />
           <Text style={styles.title}>2S Hub</Text>
           <Text style={styles.subtitle}>Sign in with your Odoo account</Text>
 

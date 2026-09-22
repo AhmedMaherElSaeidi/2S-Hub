@@ -7,8 +7,15 @@ export default StyleSheet.create({
   },
   content: {
     flexGrow: 1,
-    justifyContent: "center",
+    paddingTop: 60,
     paddingHorizontal: 24,
+  },
+  logo: {
+    alignSelf: "center",
+    width: 96,
+    height: 96,
+    resizeMode: "contain",
+    marginBottom: 24,
   },
   title: {
     fontSize: 32,
