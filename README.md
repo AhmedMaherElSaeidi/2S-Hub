@@ -42,8 +42,8 @@ the server.
 
 **Test accounts:**
 
-| username | password | role                                        |
-|----------|----------|----------------------------------------------|
+| username | password | role                                          |
+| -------- | -------- | --------------------------------------------- |
 | `admin`  | `admin`  | internal user — sees the Sales Orders tab     |
 | `sales`  | `sales`  | portal/external user — no Sales Orders access |
 
@@ -60,11 +60,11 @@ EXPO_PUBLIC_API_URL=http://<your-value-here>:4000
 
 **What to put there depends on how you're running the app:**
 
-| Running on                        | `EXPO_PUBLIC_API_URL`             |
-|------------------------------------|------------------------------------|
-| iOS simulator                     | `http://localhost:4000`           |
-| Android emulator                  | `http://10.0.2.2:4000`            |
-| Physical phone (Expo Go)          | `http://<your-computer's-LAN-IP>:4000` |
+| Running on               | `EXPO_PUBLIC_API_URL`                  |
+| ------------------------ | -------------------------------------- |
+| iOS simulator            | `http://localhost:4000`                |
+| Android emulator         | `http://10.0.2.2:4000`                 |
+| Physical phone (Expo Go) | `http://<your-computer's-LAN-IP>:4000` |
 
 To find your LAN IP: `ipconfig getifaddr en0` (Mac) or `ipconfig` → IPv4
 Address (Windows). `localhost` on a physical phone refers to the phone
@@ -123,3 +123,30 @@ Each screen follows the same chain, and never skips a layer:
 ```
 Page (.jsx)  →  Page service (.service.js)  →  Controller  →  services.js  →  Backend
 ```
+
+## App Workflow
+
+The app follows a simple, role-aware flow: every user logs in and lands on the
+Customer List; internal users additionally get access to Sales Orders.
+
+| Step | Screen                | Description                                                                  |
+| ---- | --------------------- | ---------------------------------------------------------------------------- |
+| 1    | **Login**             | User authenticates with their Odoo username/password.                        |
+| 2    | **Customer List**     | Customers (`res.partner`, `customer_rank > 0`) with search by name.          |
+| 3    | **Customer Details**  | View + edit contact info; phone updates sync back to Odoo.                   |
+| 4    | **Sales Orders List** | _(Internal users only)_ Order number, customer, date, and status.            |
+| 5    | **Order Details**     | Products, totals, status, and the option to confirm a draft/quotation order. |
+| 6    | **Profile**           | Logged-in user info, role badge, and logout.                                 |
+
+<table>
+  <tr>
+    <td align="center"><img src="assets/readme/login screen.jpg" width="200"/><br/>Login</td>
+    <td align="center"><img src="assets/readme/customers list screen.jpg" width="200"/><br/>Customer List</td>
+    <td align="center"><img src="assets/readme/customer details screen.jpg" width="200"/><br/>Customer Details</td>
+  </tr>
+  <tr>
+    <td align="center"><img src="assets/readme/orders screen.jpg" width="200"/><br/>Sales Orders</td>
+    <td align="center"><img src="assets/readme/order details screen.jpg" width="200"/><br/>Order Details</td>
+    <td align="center"><img src="assets/readme/profile screen.jpg" width="200"/><br/>Profile</td>
+  </tr>
+</table>
