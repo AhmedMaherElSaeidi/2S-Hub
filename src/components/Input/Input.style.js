@@ -21,4 +21,16 @@ export default StyleSheet.create({
     backgroundColor: "#ffffff",
     fontSize: 16,
   },
+  inputWrapper: {
+    justifyContent: "center",
+  },
+  inputWithIcon: {
+    paddingRight: 44,
+  },
+  iconButton: {
+    position: "absolute",
+    right: 14,
+    height: 48,
+    justifyContent: "center",
+  },
 });
